@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />			
+	<title>Tip Calculator</title>
+	<style type="text/css">
+		@charset "UTF-8";
+
+		html {
+			width: 100%;
+			height: 100%;
+			background: url('https://stmed.net/sites/default/files/restaurant-wallpapers-28840-2797257.jpg') center center no-repeat fixed;
+			background-size: cover;
+			box-sizing: border-box;
+			font-family: 'corbel';
+		}
+
+		section {
+			box-shadow: 5px 5px 5px 5px rgba(255,255,255,0.5);
+			background: url('http://www.ilovekimbles.co.uk/wp-content/uploads/2013/03/paper.png') top left repeat;
+			border-radius: 20px;
+			border: 5px solid #654321;
+			width: 50%;
+			margin: 50px auto;
+			text-align: center;
+		    padding-bottom: 20px;
+		}
+
+		section article header {
+			border-bottom: 5px solid black;
+			background: linear-gradient(to right, black, darkblue);
+			border-top-left-radius: 20px;
+			border-top-right-radius: 20px;
+			padding: 5px;
+		}
+
+		section article header h1 {
+			font-size: 2em;
+			color: white;
+		}
+
+		form p {
+			font-size: 1.3em;
+			text-shadow: 5px 5px 5px grey;
+		}
+
+		form p button {
+			width: 75%;
+			height: 50px;
+			text-transform: uppercase;
+			border-radius: 20px;
+			background: linear-gradient(to bottom, black, darkblue);
+			color: white;
+			font-weight: bold;
+			box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.5);
+			border: none;
+			font-size: 1.2em;
+		}
+
+		form p button:hover {
+			background: linear-gradient(to top, black, darkblue);
+			cursor: pointer; 
+
+		}
+
+		form p button:active {
+			position: relative;
+			top: 3px;
+		}
+
+		 form span#symbol1, span#symbol2, span#symbol3, span#tipAmount {
+		 	font-size: 1.6em;
+		 	font-weight: bold;
+		 	text-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+
+		 }
+
+		 form span#each {
+		 	font-size: 1.3em;
+		 	font-weight: bold;
+		 }
+
+		form p#tipAmount2 {
+			text-transform: uppercase;
+			font-weight: bold;
+			font-size: 1.5em;
+		}
+
+		form p input#billAmount, select#service, select#currency, input#numPeople {
+			height: 30px;
+			font-size: 1em;
+			font-family: 'corbel';
+		}
+
+		form p.txt {
+			font-size: 1.5em;
+		}
+
+		/* ------------
+		  SCREEN SIZES 
+		--------------- */
+		@media only screen and (max-width: 600px) {
+			section {
+				width: 80%;
+			}
+
+			section article header h1 {
+				font-size: 1.5em;
+			}
+		}
+
+		@media only screen and (min-width: 600px) {
+			section {
+				width: 80%;
+			}
+
+			section article header h1 {
+				font-size: 1.5em;
+			}
+		}
+
+		@media only screen and (min-width: 768px) {
+			section {
+				width: 70%;
+			}
+
+			section article header h1 {
+				font-size: 1.5em;
+			}
+		}
+
+		@media only screen and (min-width: 992px) {
+			section {
+				width: 60%;
+			}
+
+			section article header h1 {
+				font-size: 2em;
+			}
+		}
+
+		@media only screen and (min-width: 1200px) {
+			section {
+				width: 50%;
+			}
+
+			section article header h1 {
+				font-size: 2em;
+			}
+		}
+
+
+	</style>
+</head>
+<body>
+
+	<section>
+		<article>
+			<header><h1>Tip Calculator</h1></header>
+		</article>
+		
+		<form>
+			<p class="txt">
+				How much was your bill?
+			</p>
+			<p>
+				<input type="text" id="billAmount" placeholder="Bill Amount" />
+			</p> <br/>
+			<p class="txt">
+				How was your service?
+			</p>
+			<p>
+				<select id="service">
+					<option value="0" selected disabled>-- Choose an option --</option>
+					<option value="0.3">30% - Excellent</option>
+					<option value="0.2">20% - Good</option>
+					<option value="0.15">15% - It was OK</option>
+					<option value="0.1">10% - Bad</option>
+					<option value="0.05">5% - Horrible</option>
+				</select>
+			</p> <br/>
+			<p class="txt">
+				What is your currency?
+			</p>
+			<p>
+				<select id="currency">
+					<option value="0" selected disabled>-- Choose an option --</option>
+					<option value="£">GBP - British Pound</option>
+					<option value="$">USD - US Dollar</option>
+					<option value="€">EUR - Euro</option>
+				</select>
+			</p> <br/>
+			<p class="txt">
+				How many people are sharing the bill?
+			</p>
+			<p>
+				<input type="number" id="numPeople" placeholder="Number of People" min="0" /> people
+			</p> <br/> <br/>
+			<p>
+				<button type="button" id="calculate">Calculate</button>
+			</p>
+			<p id="tipAmount2">
+				Tip Amount
+			</p>
+			
+			
+				<span id="symbol1">£ </span>
+				<span id="symbol2">$ </span>
+				<span id="symbol3">€ </span>
+				<span id="tipAmount">
+					0.00
+				</span> 
+				<span id="each"> each</span>
+			
+		</form>
+	</section>
+
+<script type="text/javascript">
+	// HIDE THE SYMBOL AND THE TIP AMOUNT
+	document.getElementById('symbol1').style.display = 'none';
+	document.getElementById('symbol2').style.display = 'none';
+	document.getElementById('symbol3').style.display = 'none';
+	document.getElementById('tipAmount').style.display = 'none';
+	document.getElementById('each').style.display = 'none';
+
+	// WHEN CLICKING ON CALCULATE BUTTON, DO THE ACTION
+	document.getElementById('calculate').onclick = function () {
+
+		// GET VARIABLES
+		var a = document.getElementById('billAmount').value;
+		var b = document.getElementById('service').value;
+		var c = document.getElementById('currency').value;
+		var d = document.getElementById('numPeople').value;
+
+		// VALIDATION
+		if(a === "" || a == 0 || isNaN(a)) {
+	    	 window.alert('Please type a valid bill amount in numbers!');
+	    	 c.style.display = 'none';
+
+	    } else if(b == 0) {
+	    	window.alert('Choose your service');
+	    } else if(c == 0) {
+	    	window.alert('Choose your currency');
+	    } else if(d === "" || d == 0 || d == 1 ) {
+			   var total = (a * b);
+			   total = total.toFixed(2);
+			   document.getElementById('tipAmount').innerHTML = total;
+			   document.getElementById('tipAmount').style.display = 'inline';
+			   document.getElementById('each').style.display = 'none';
+			} else {
+				var total = (a * b) / d;
+			   	total = total.toFixed(2);
+			   	document.getElementById('tipAmount').innerHTML = total;
+			   	document.getElementById('tipAmount').style.display = 'inline';
+			   	document.getElementById('each').style.display = 'inline';
+			}
+
+	    switch(c) {
+	    	case "£":
+	    		document.getElementById('symbol1').style.display = 'inline';
+	    		document.getElementById('symbol2').style.display = 'none';
+				document.getElementById('symbol3').style.display = 'none';
+				break;
+
+			case "$":
+				document.getElementById('symbol1').style.display = 'none';
+	    		document.getElementById('symbol2').style.display = 'inline';
+				document.getElementById('symbol3').style.display = 'none';
+				break;
+
+			case "€":
+				document.getElementById('symbol1').style.display = 'none';
+	    		document.getElementById('symbol2').style.display = 'none';
+				document.getElementById('symbol3').style.display = 'inline';
+				break;
+
+			default:
+				break;
+	    }
+	}
+</script>
+</body>
+</html>

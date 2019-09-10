@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" ="" content="IE=edge">
+	<title></title>
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css?family=Caesar+Dressing');
+		body {
+
+			background: url('http://www.kinyu-z.net/data/wallpapers/59/909918.jpg') no-repeat center center fixed;
+			background-size: cover;
+		}
+
+		.autoDetector {
+			text-align: center;
+			margin-top: 100px;
+		}
+
+		.autoDetector h1 {
+			font-family: 'Caesar Dressing', cursive;
+			text-align: center;
+			color: white;
+			font-size: 3em;
+			text-shadow: 5px 5px 5px black;
+			-webkit-text-shadow: 5px 5px 5px black;
+			-moz-text-shadow: 5px 5px 5px black;
+			-o-text-shadow: 5px 5px 5px black;
+			-ms-text-shadow: 5px 5px 5px black;
+		}
+
+		.autoDetector textarea {
+			background-color: black;
+			color: white;
+			border: none;
+			height: 40%;
+			width: 50%;
+			border-top-left-radius: 20px;
+			border-bottom-left-radius: 20px;
+			padding: 15px;
+			font-size: 120%;
+			resize: none;
+		}
+
+		.autoDetector textarea:hover {
+			box-shadow: 3px 3px 3px 3px rgba(255,255,255,0.5);
+			-webkit-box-shadow: 3px 3px 3px 3px rgba(255,255,255,0.5);
+			-moz-box-shadow: 3px 3px 3px 3px rgba(255,255,255,0.5);
+			-o-box-shadow: 3px 3px 3px 3px rgba(255,255,255,0.5);
+			-ms-box-shadow: 3px 3px 3px 3px rgba(255,255,255,0.5);
+			transition: all 0.7s ease-in-out;
+			-webkit-transition: all 0.7s ease-in-out;
+			-moz-transition: all 0.7s ease-in-out;
+			-o-transition: all 0.7s ease-in-out;
+			-ms-transition: all 0.7s ease-in-out;
+		}
+
+		p#showMe {
+			color: skyblue;
+			font-family: Arial;
+			font-size: 1.5em;
+		}
+
+	</style>
+<!--[if IE]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+
+	<div class="autoDetector"> 
+		<h1>Bad Words Auto Detector</h1>
+		<br /> <br />
+		<textarea id="ui" onkeyup="clean('ui')" onkeydown="clean('ui')" placeholder="Try to type a sentence includes one or more bad words and see what happens!"></textarea> <br />
+
+		<p id="showMe"></p>
+	</div>
+	
+
+<script type="text/javascript">
+	function clean(e) {
+	var textField = document.getElementById(e);
+	var expReg = /fuck|cunt|pussy|cock|ass|bitch|bastard|dick|bugger|bollocks|shag|wanker|twat|nigger|nigga|whore|arse|sex/gi;
+
+	if(textField.value.search(expReg) > -1) {
+		document.getElementById('showMe').innerHTML = 'Bad words removed automatically';
+		textField.value = textField.value.replace(expReg, '');
+	}
+}
+</script>
+</body>
+</html>
